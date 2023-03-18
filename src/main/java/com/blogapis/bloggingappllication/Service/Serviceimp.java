@@ -4,10 +4,11 @@ import com.blogapis.bloggingappllication.DTO.UserDTO;
 
 import java.util.List;
 
-public interface Service {
+public interface Serviceimp {
 
     UserDTO createUser(UserDTO userDTO);
     List<UserDTO> getAllUsers();
     UserDTO updateUser(UserDTO userDTO, Integer userId);
     void deleteUser(Integer userId);
+    UserDTO getById(Integer userId);
 }
