@@ -1,6 +1,6 @@
 package com.blogapis.bloggingappllication.Service;
 
-import com.blogapis.bloggingappllication.Exception.ResourceNotFoundException
+import com.blogapis.bloggingappllication.Exception.ResourceNotFoundException;
 import com.blogapis.bloggingappllication.DTO.UserDTO;
 import com.blogapis.bloggingappllication.Entity.UserEntity;
 import com.blogapis.bloggingappllication.Repository.UserRepository;
@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class UserService {
+public class UserServiceimp implements Serviceimp {
 
     @Autowired
     UserRepository userRepository;
@@ -26,17 +26,13 @@ public class UserService {
         // we are going to use a library called ModelMapper.
         // The goal of ModelMapper is to make object mapping easy by automatically determining how one object model maps to another.
      }
+     @Override
     public List<UserDTO> getAllUsers(){
          List<UserEntity> users = this.userRepository.findAll();
          List<UserDTO> userDTOS = users.stream().map(user -> this.userEntityToUserDTO(user)).collect(Collectors.toList());
          return userDTOS;
     }
-
-    public UserDTO getUserById(Integer userId){
-        UserEntity user = this.userRepository.findById(userId)
-                .orElseThrow(()-> new ResourceNotFoundException("user", "id", userId));
-        return this.userEntityToUserDTO(user);
-    }
+    @Override
     public UserDTO updateUser(UserDTO userDTO, Integer userId){
         UserEntity user = this.userRepository.findById(userId).
                 orElseThrow(()-> new ResourceNotFoundException("User", "Id", userId));
@@ -49,7 +45,13 @@ public class UserService {
         UserDTO userdto = this.userEntityToUserDTO(UpdatedUser);
         return userdto;
     }
-    public void deleteUser(Integer userId){}
+    @Override
+    public void deleteUser(Integer userId){
+        UserEntity user = this.userRepository.findById(userId)
+                .orElseThrow(()-> new ResourceNotFoundException("user", "id", userId));
+        this.userRepository.delete(user);
+    }
+    @Override
     public UserDTO getById(Integer userId){
         UserEntity user = this.userRepository.findById(userId).
                 orElseThrow(()->new ResourceNotFoundException("user", "id", userId));
