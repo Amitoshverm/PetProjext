@@ -1,5 +1,6 @@
 package com.blogapis.bloggingappllication.Controller;
 
+import com.blogapis.bloggingappllication.DTO.ApiResponse;
 import com.blogapis.bloggingappllication.DTO.UserDTO;
 import com.blogapis.bloggingappllication.Entity.UserEntity;
 import com.blogapis.bloggingappllication.Service.UserServiceimp;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.RequestScope;
 
 import java.net.URI;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -47,6 +49,6 @@ public class UserController {
     @DeleteMapping("/{userId}")
     public ResponseEntity<?> deleteUser(@PathVariable Integer userId) {
         this.userService.deleteUser(userId);
-        return new ResponseEntity<>(Map.of("message", "user deleted"), HttpStatus.OK);
+        return new ResponseEntity(new ApiResponse(new Date(), "user deleted successfully", true), HttpStatus.OK);
     }
 }
