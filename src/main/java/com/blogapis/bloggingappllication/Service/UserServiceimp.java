@@ -1,6 +1,6 @@
 package com.blogapis.bloggingappllication.Service;
 
-import com.blogapis.bloggingappllication.Exception.ResourceNotFoundException;
+import com.blogapis.bloggingappllication.CustomException.ResourceNotFoundException;
 import com.blogapis.bloggingappllication.DTO.UserDTO;
 import com.blogapis.bloggingappllication.Entity.UserEntity;
 import com.blogapis.bloggingappllication.Repository.UserRepository;
@@ -12,6 +12,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserServiceimp implements Serviceimp {
+    // Here we could have directly use UserEntity but used DTO just because to make sure certain fields are exposed
+    // like username and email, we would never want our password to be exposed directly, so we use DTOs
 
     @Autowired
     UserRepository userRepository;
@@ -60,8 +62,6 @@ public class UserServiceimp implements Serviceimp {
 
     }
 
-
-
 //    /**UserDTO --> UserEntity*/
     private UserEntity dtoTOUserEntity(UserDTO userDTO) {
         UserEntity user = new UserEntity();
@@ -84,7 +84,7 @@ public class UserServiceimp implements Serviceimp {
         userDTO.setAbout(user.getAbout());
         return userDTO;
     }
-    /** Above two method conversion can be managed by model mapper
+    /* Above two method conversion can be managed by model mapper
      * MODEL MAPPER - To avoid having to write cumbersome/boilerplate code to map DTOs into entities and vice-versa,
      * we are going to use a library called ModelMapper.
      * The goal of ModelMapper is to make object mapping easy by automatically determining how one object model maps to another.*/
