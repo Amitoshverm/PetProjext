@@ -1,4 +1,4 @@
-package com.blogapis.bloggingappllication.Exception;
+package com.blogapis.bloggingappllication.CustomException;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
