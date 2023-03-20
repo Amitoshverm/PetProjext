@@ -4,6 +4,7 @@ import com.blogapis.bloggingappllication.CustomException.ResourceNotFoundExcepti
 import com.blogapis.bloggingappllication.DTO.UserDTO;
 import com.blogapis.bloggingappllication.Entity.UserEntity;
 import com.blogapis.bloggingappllication.Repository.UserRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,9 @@ public class UserServiceimp implements Serviceimp {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    ModelMapper modelMapper;
 
     public UserDTO createUser(UserDTO userDTO){
 
@@ -64,24 +68,28 @@ public class UserServiceimp implements Serviceimp {
 
 //    /**UserDTO --> UserEntity*/
     private UserEntity dtoTOUserEntity(UserDTO userDTO) {
-        UserEntity user = new UserEntity();
-        user.setUserId(userDTO.getUserId());
-        user.setEmail(userDTO.getEmail());
-        user.setUsername(userDTO.getUsername());
-        user.setPassword(userDTO.getPassword());
-        user.setAbout(userDTO.getAbout());
+        //using modal mapper
+        UserEntity user = this.modelMapper.map(userDTO, UserEntity.class);
+
+//        user.setUserId(userDTO.getUserId());
+//        user.setEmail(userDTO.getEmail());
+//        user.setUsername(userDTO.getUsername());
+//        user.setPassword(userDTO.getPassword());
+//        user.setAbout(userDTO.getAbout());
         return user;
     }
 
 
 //    /**UserEntity --> UserDTO*/
     private UserDTO userEntityToUserDTO(UserEntity user){
-        UserDTO userDTO = new UserDTO();
-        userDTO.setUserId(user.getUserId());
-        userDTO.setUsername(user.getUsername());
-        userDTO.setEmail(user.getEmail());
-        userDTO.setPassword((user.getPassword()));
-        userDTO.setAbout(user.getAbout());
+        //using modal mapper
+        UserDTO userDTO = this.modelMapper.map(user,UserDTO.class);
+
+//        userDTO.setUserId(user.getUserId());
+//        userDTO.setUsername(user.getUsername());
+//        userDTO.setEmail(user.getEmail());
+//        userDTO.setPassword((user.getPassword()));
+//        userDTO.setAbout(user.getAbout());
         return userDTO;
     }
     /* Above two method conversion can be managed by model mapper
