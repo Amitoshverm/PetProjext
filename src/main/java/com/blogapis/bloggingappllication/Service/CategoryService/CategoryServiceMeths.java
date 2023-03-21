@@ -4,7 +4,7 @@ import com.blogapis.bloggingappllication.DTO.CategoryDTO;
 
 import java.util.List;
 
-public interface CategoryServiceMeth {
+public interface CategoryServiceMeths {
 
     // CREATE
      CategoryDTO createCategory(CategoryDTO categoryDTO);
