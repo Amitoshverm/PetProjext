@@ -4,7 +4,6 @@ import com.blogapis.bloggingappllication.CustomException.ResourceNotFoundExcepti
 import com.blogapis.bloggingappllication.DTO.UserDTO;
 import com.blogapis.bloggingappllication.Entity.UserEntity;
 import com.blogapis.bloggingappllication.Repository.UserRepository;
-import com.blogapis.bloggingappllication.Service.UserService.Serviceimp;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class UserServiceimp implements Serviceimp {
+public class UserServiceImp implements ServiceMeths {
     // Here we could have directly use UserEntity but used DTO just because to make sure certain fields are exposed
     // like username and email, we would never want our password to be exposed directly, so we use DTOs
 
@@ -36,7 +35,10 @@ public class UserServiceimp implements Serviceimp {
      @Override
     public List<UserDTO> getAllUsers(){
          List<UserEntity> users = this.userRepository.findAll();
-         List<UserDTO> userDTOS = users.stream().map(user -> this.userEntityToUserDTO(user)).collect(Collectors.toList());
+         List<UserDTO> userDTOS = users
+                 .stream()
+                 .map(user -> this.userEntityToUserDTO(user))
+                 .collect(Collectors.toList());
          return userDTOS;
     }
     @Override
