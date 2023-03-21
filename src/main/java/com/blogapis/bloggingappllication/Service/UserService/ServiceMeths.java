@@ -1,15 +1,13 @@
-package com.blogapis.bloggingappllication.Service;
+package com.blogapis.bloggingappllication.Service.UserService;
 
 import com.blogapis.bloggingappllication.DTO.UserDTO;
 
 import java.util.List;
 
-public interface Serviceimp {
+public interface ServiceMeth {
 
     // This class is just basic operation for service this could be done directly without
     // creating this Serviceimp, just write these methods directly to UserService class without this imp class
-
-
 
     UserDTO createUser(UserDTO userDTO);
     List<UserDTO> getAllUsers();

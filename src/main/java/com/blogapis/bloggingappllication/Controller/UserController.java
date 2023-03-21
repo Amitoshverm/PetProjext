@@ -2,27 +2,22 @@ package com.blogapis.bloggingappllication.Controller;
 
 import com.blogapis.bloggingappllication.DTO.ApiResponse;
 import com.blogapis.bloggingappllication.DTO.UserDTO;
-import com.blogapis.bloggingappllication.Entity.UserEntity;
-import com.blogapis.bloggingappllication.Service.UserServiceimp;
-import org.apache.coyote.Response;
+import com.blogapis.bloggingappllication.Service.UserService.UserServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.annotation.RequestScope;
 
 import javax.validation.Valid;
-import java.net.URI;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+
 @SuppressWarnings("unchecked")
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
     @Autowired
-    UserServiceimp userService;
+    UserServiceImp userService;
 
     @PostMapping("/")
     public ResponseEntity<UserDTO> createUser(@Valid @RequestBody UserDTO userDTO){ // Valid is used to enable annotations on the dto bean
