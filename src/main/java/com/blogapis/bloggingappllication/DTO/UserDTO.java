@@ -11,19 +11,18 @@ import javax.validation.constraints.*;
 @Setter
 public class UserDTO {
 
-    Integer userId;
 
     @NotEmpty
     @Size(min = 2, message = "name must be more than 2 character")
-    String username;
+    private String username;
 
     @Email(message = "Email address not valid !!")
-    String email;
+    private String email;
 
     @NotNull
     @Pattern(regexp = "^([a-zA-Z0-9]{8})", message = "Password should contain one UpperCase, number and should have length of 8")
-    String password;
+    private String password;
 
     @NotNull
-    String about;
+    private String about;
 }
