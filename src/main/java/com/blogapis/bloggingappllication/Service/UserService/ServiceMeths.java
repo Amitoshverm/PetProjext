@@ -4,7 +4,7 @@ import com.blogapis.bloggingappllication.DTO.UserDTO;
 
 import java.util.List;
 
-public interface ServiceMeth {
+public interface ServiceMeths {
 
     // This class is just basic operation for service this could be done directly without
     // creating this Serviceimp, just write these methods directly to UserService class without this imp class
