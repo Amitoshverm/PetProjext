@@ -16,10 +16,10 @@ public class CategoryEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer categoryId;
 
-    @Column(name = "title")
+    @Column(name = "title", nullable = false)
     private String categoryTitle;
 
-    @Column(name = "description")
+    @Column(name = "description", nullable = false)
     private String categoryDescription;
 
 }
