@@ -57,7 +57,7 @@ public class CategoryServiceImp implements CategoryServiceMeths {
         List<CategoryEntity> categoryEntities = this.categoryRepository.findAll();
         List<CategoryDTO> categoryDTOs = categoryEntities.stream()
                 .map(categoryEntity -> this.modelMapper.map(categoryEntity, CategoryDTO.class))
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()); 
 
         return categoryDTOs;
     }
