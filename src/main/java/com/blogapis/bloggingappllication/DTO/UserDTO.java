@@ -11,6 +11,7 @@ import javax.validation.constraints.*;
 @Setter
 public class UserDTO {
 
+    private Integer userId;
 
     @NotEmpty
     @Size(min = 2, message = "name must be more than 2 character")
