@@ -16,7 +16,7 @@ import java.util.List;
 public class UserEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer userId;
     @Column(name= "user_name", nullable = false)
     String username;
