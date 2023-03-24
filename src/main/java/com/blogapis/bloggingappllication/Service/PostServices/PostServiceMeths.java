@@ -20,7 +20,8 @@ public interface PostServiceMeths {
     PostDTO getPostById(Integer postId);
 
     //GET ALL
-    List<PostDTO> getAllPosts();
+//    List<PostDTO> getAllPosts();
+    List<PostDTO> getAllPosts(Integer pageNumber, Integer PageSize);  /** PAGINATION */
 
     //GET ALL POST BY CATEGORY
     List<PostDTO> getPostsByCategory(Integer categoryId);

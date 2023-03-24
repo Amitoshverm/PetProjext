@@ -10,6 +10,9 @@ import com.blogapis.bloggingappllication.Repository.PostRepository;
 import com.blogapis.bloggingappllication.Repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -76,14 +79,29 @@ public class PostServiceImp implements PostServiceMeths{
 
     }
 
+//    @Override
+//    public List<PostDTO> getAllPosts() {
+//        List<PostEntity> allPosts = this.postRepository.findAll();
+//        List<PostDTO> posts = allPosts.stream()
+//                .map((post) -> this.modelMapper.map(post, PostDTO.class))
+//                .collect(Collectors.toList()) ;
+//        return posts;
+//    }
+    /** PAGINATION */
     @Override
-    public List<PostDTO> getAllPosts() {
-        List<PostEntity> allPosts = this.postRepository.findAll();
-        List<PostDTO> posts = allPosts.stream()
-                .map((post) -> this.modelMapper.map(post, PostDTO.class))
-                .collect(Collectors.toList()) ;
-        return posts;
+    public List<PostDTO> getAllPosts(Integer pageNumber, Integer pageSize) {
+
+        Pageable page = PageRequest.of(pageNumber, pageSize);
+
+        Page<PostEntity> pagePost = this.postRepository.findAll(page);
+        List<PostEntity> allPost = pagePost.getContent();
+        List<PostDTO> postDTOS = allPost
+                .stream()
+                .map((post)-> this.modelMapper.map(post, PostDTO.class))
+                .collect(Collectors.toList());;
+        return postDTOS;
     }
+
 
     @Override
     public List<PostDTO> getPostsByCategory(Integer categoryId) {

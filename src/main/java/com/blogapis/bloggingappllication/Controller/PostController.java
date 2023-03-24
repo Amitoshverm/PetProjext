@@ -46,9 +46,20 @@ public class PostController {
     }
 
     // get all posts
+//    @GetMapping("/posts")
+//    public ResponseEntity<List<PostDTO>> getAllPosts() {
+//        List<PostDTO> posts = this.postService.getAllPosts();
+//        return new ResponseEntity<List<PostDTO>>(posts, HttpStatus.OK);
+//    }
+
+
+    /** PAGINATION */
     @GetMapping("/posts")
-    public ResponseEntity<List<PostDTO>> getAllPosts() {
-        List<PostDTO> posts = this.postService.getAllPosts();
+    public ResponseEntity<List<PostDTO>> getAllPosts(
+            @RequestParam(value = "pageNumber", defaultValue = "1", required = false) Integer pageNumber,
+            @RequestParam(value = "pageSize", defaultValue = "5", required = false) Integer pageSize
+    ) {
+        List<PostDTO> posts = this.postService.getAllPosts(pageNumber, pageSize);
         return new ResponseEntity<List<PostDTO>>(posts, HttpStatus.OK);
     }
 
