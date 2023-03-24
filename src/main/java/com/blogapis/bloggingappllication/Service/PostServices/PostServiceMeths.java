@@ -11,7 +11,7 @@ public interface PostServiceMeths {
     PostDTO createPost(PostDTO postDTO, Integer categoryId, Integer userId);
 
     //UPDATE
-    PostDTO updatePost(PostEntity post, Integer postId);
+    PostDTO updatePost(PostDTO post, Integer postId);
 
     //DELETE
     void deletePost(Integer postId);

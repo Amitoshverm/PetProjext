@@ -2,7 +2,6 @@ package com.blogapis.bloggingappllication.Service.PostServices;
 
 import com.blogapis.bloggingappllication.CustomException.ResourceNotFoundException;
 import com.blogapis.bloggingappllication.DTO.PostDTO;
-import com.blogapis.bloggingappllication.DTO.UserDTO;
 import com.blogapis.bloggingappllication.Entity.CategoryEntity;
 import com.blogapis.bloggingappllication.Entity.PostEntity;
 import com.blogapis.bloggingappllication.Entity.UserEntity;
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -50,15 +48,14 @@ public class PostServiceImp implements PostServiceMeths{
     }
 
     @Override
-    public PostDTO updatePost(PostEntity post, Integer postId) {
+    public PostDTO updatePost(PostDTO post, Integer postId) {
         PostEntity postEntity = this.postRepository.findById(postId).orElseThrow(()-> new ResourceNotFoundException("post", "postId", postId));
-        postEntity.setUser(post.getUser());
-        postEntity.setCategory(post.getCategory());
         postEntity.setPostTitle(post.getPostTitle());
         postEntity.setContent(post.getContent());
+        postEntity.setImage(post.getImage());
 
-        PostDTO postDTO = this.modelMapper.map(postEntity, PostDTO.class);
-        return postDTO;
+        PostEntity updatedPost = this.postRepository.save(postEntity);
+        return this.modelMapper.map(updatedPost, PostDTO.class);
     }
 
     @Override
@@ -84,7 +81,7 @@ public class PostServiceImp implements PostServiceMeths{
         List<PostEntity> allPosts = this.postRepository.findAll();
         List<PostDTO> posts = allPosts.stream()
                 .map((post) -> this.modelMapper.map(post, PostDTO.class))
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()) ;
         return posts;
     }
 
