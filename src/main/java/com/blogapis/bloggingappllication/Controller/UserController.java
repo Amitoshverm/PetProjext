@@ -14,7 +14,7 @@ import java.util.List;
 
 @SuppressWarnings("unchecked")
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/user")
 public class UserController {
     @Autowired
     UserServiceImp userService;
@@ -27,7 +27,7 @@ public class UserController {
     @GetMapping("/")
     public ResponseEntity<List<UserDTO>> getUserAllUsers(){
         List<UserDTO> users = this.userService.getAllUsers();
-        return  ResponseEntity.ok(users);
+        return ResponseEntity.ok(users);
     }
 
     @GetMapping("/{userId}")
@@ -39,7 +39,7 @@ public class UserController {
     @PutMapping("/{userId}")
     public ResponseEntity<UserDTO> updateUser(@Valid @RequestBody UserDTO userDTO, @PathVariable Integer userId){ // Valid is used to enable annotations on the dto bean
         UserDTO updatedUser = this.userService.updateUser(userDTO, userId);
-        return  ResponseEntity.ok(updatedUser);
+        return ResponseEntity.ok(updatedUser);
     }
 
     @DeleteMapping("/{userId}")
