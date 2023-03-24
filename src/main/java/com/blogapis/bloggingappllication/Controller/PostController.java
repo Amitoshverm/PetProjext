@@ -65,4 +65,12 @@ public class PostController {
         PostDTO post = this.postService.getPostById(postId);
         return new ResponseEntity<PostDTO>(post, HttpStatus.OK);
     }
+
+    // update post
+    @PutMapping("/posts/{postId}")
+    public ResponseEntity<PostDTO> updatePost(@RequestBody PostDTO post,@PathVariable Integer postId){
+        PostDTO postDTO = this.postService.updatePost(post, postId);
+
+        return new ResponseEntity<>(postDTO, HttpStatus.OK);
+    }
 }
