@@ -15,7 +15,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
+
 
 @Service
 public class PostServiceImp implements PostServiceMeths{
@@ -48,23 +50,42 @@ public class PostServiceImp implements PostServiceMeths{
     }
 
     @Override
-    public PostEntity updatePost(PostEntity post, Integer postId) {
-        return null;
+    public PostDTO updatePost(PostEntity post, Integer postId) {
+        PostEntity postEntity = this.postRepository.findById(postId).orElseThrow(()-> new ResourceNotFoundException("post", "postId", postId));
+        postEntity.setUser(post.getUser());
+        postEntity.setCategory(post.getCategory());
+        postEntity.setPostTitle(post.getPostTitle());
+        postEntity.setContent(post.getContent());
+
+        PostDTO postDTO = this.modelMapper.map(postEntity, PostDTO.class);
+        return postDTO;
     }
 
     @Override
     public void deletePost(Integer postId) {
+        PostEntity postEntity = this.postRepository.findById(postId)
+                .orElseThrow(()-> new ResourceNotFoundException("post", "postId", postId));
+
+        this.postRepository.delete(postEntity);
+    }
+
+    @Override
+    public PostDTO getPostById(Integer postId) {
+        PostEntity postEntity = this.postRepository.findById(postId)
+                .orElseThrow(()->new ResourceNotFoundException("post", "postId", postId));
+
+        PostDTO post = this.modelMapper.map(postEntity, PostDTO.class);
+        return post;
 
     }
 
     @Override
-    public PostEntity getPostById(Integer postId) {
-        return null;
-    }
-
-    @Override
-    public List<PostEntity> getAllPosts() {
-        return null;
+    public List<PostDTO> getAllPosts() {
+        List<PostEntity> allPosts = this.postRepository.findAll();
+        List<PostDTO> posts = allPosts.stream()
+                .map((post) -> this.modelMapper.map(post, PostDTO.class))
+                .collect(Collectors.toList());
+        return posts;
     }
 
     @Override
@@ -73,11 +94,10 @@ public class PostServiceImp implements PostServiceMeths{
                 .orElseThrow(()->new ResourceNotFoundException("category", "categoryId", categoryId));
         List<PostEntity> postEntities = this.postRepository.findByCategory(category);
 
-        return postEntities
-                .stream()
-                .map((PostEntity)-> this.modelMapper.map(postEntities, PostDTO.class))
+        List<PostDTO> postDTOS = postEntities.stream()
+                .map((post)-> this.modelMapper.map(post, PostDTO.class))
                 .collect(Collectors.toList());
-
+        return postDTOS;
     }
 
     @Override
@@ -86,7 +106,7 @@ public class PostServiceImp implements PostServiceMeths{
         List<PostEntity> postEntities = this.postRepository.findByUser(user);
         List<PostDTO> posts = postEntities
                 .stream()
-                .map((PostEntity)-> this.modelMapper.map(postEntities, PostDTO.class))
+                .map((post)-> this.modelMapper.map(post, PostDTO.class))
                 .collect(Collectors.toList());
 
         return posts;
