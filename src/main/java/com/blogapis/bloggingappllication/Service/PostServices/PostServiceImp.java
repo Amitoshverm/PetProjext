@@ -91,9 +91,17 @@ public class PostServiceImp implements PostServiceMeths{
 //    }
     /** PAGINATION */
     @Override
-    public PostResponse getAllPosts(Integer pageNumber, Integer pageSize) {
+    public PostResponse getAllPosts(Integer pageNumber, Integer pageSize, String sortBy, String sortDir) {
 
-        Pageable page = PageRequest.of(pageNumber, pageSize);
+        Sort sort = null;
+        if (sortDir.equalsIgnoreCase("asc")){
+            sort = Sort.by(sortBy).ascending();
+        }
+        else {
+            sort = Sort.by(sortBy).descending();
+        }
+
+        Pageable page = PageRequest.of(pageNumber, pageSize, sort);
 
         Page<PostEntity> pagePost = this.postRepository.findAll(page);
         List<PostEntity> allPost = pagePost.getContent();

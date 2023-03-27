@@ -22,7 +22,7 @@ public interface PostServiceMeths {
 
     //GET ALL
 //    List<PostDTO> getAllPosts();
-    PostResponse getAllPosts(Integer pageNumber, Integer PageSize);  /** PAGINATION */
+    PostResponse getAllPosts(Integer pageNumber, Integer PageSize, String sortBy, String sortDir);  /** PAGINATION */
 
     //GET ALL POST BY CATEGORY
     List<PostDTO> getPostsByCategory(Integer categoryId);
