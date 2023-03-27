@@ -24,9 +24,12 @@ public class UserServiceImp implements ServiceMeths {
 
     public UserDTO createUser(UserDTO userDTO){
 
-        UserEntity user = this.dtoTOUserEntity(userDTO);
+//        UserEntity user = this.dtoTOUserEntity(userDTO);
+//        UserEntity savedUser = this.userRepository.save(user);
+//        return this.userEntityToUserDTO(savedUser);
+        UserEntity user = this.modelMapper.map(userDTO, UserEntity.class);
         UserEntity savedUser = this.userRepository.save(user);
-        return this.userEntityToUserDTO(savedUser);
+        return this.modelMapper.map(savedUser, UserDTO.class);
         /* This whole can be easily be done using model mapper */
         // To avoid having to write cumbersome/boilerplate code to map DTOs into entities and vice-versa,
         // we are going to use a library called ModelMapper.
@@ -51,8 +54,7 @@ public class UserServiceImp implements ServiceMeths {
         user.setAbout(userDTO.getAbout());
 
         UserEntity UpdatedUser = this.userRepository.save(user);
-        UserDTO userdto = this.userEntityToUserDTO(UpdatedUser);
-        return userdto;
+        return this.modelMapper.map(UpdatedUser, UserDTO.class);
     }
     @Override
     public void deleteUser(Integer userId){
@@ -66,6 +68,9 @@ public class UserServiceImp implements ServiceMeths {
                 orElseThrow(()->new ResourceNotFoundException("user", "id", userId));
         UserDTO userDTOFound = this.userEntityToUserDTO(user);
         return userDTOFound;
+
+        // line 69 & 70 can be replaced by -
+        /* return this.modelMapper.map(user, UserDTO.class); */
 
     }
 
