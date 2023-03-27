@@ -5,6 +5,7 @@ import com.blogapis.bloggingappllication.Payload.PostDTO;
 import com.blogapis.bloggingappllication.Entity.CategoryEntity;
 import com.blogapis.bloggingappllication.Entity.PostEntity;
 import com.blogapis.bloggingappllication.Entity.UserEntity;
+import com.blogapis.bloggingappllication.Payload.PostResponse;
 import com.blogapis.bloggingappllication.Repository.CategoryRepository;
 import com.blogapis.bloggingappllication.Repository.PostRepository;
 import com.blogapis.bloggingappllication.Repository.UserRepository;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -89,7 +91,7 @@ public class PostServiceImp implements PostServiceMeths{
 //    }
     /** PAGINATION */
     @Override
-    public List<PostDTO> getAllPosts(Integer pageNumber, Integer pageSize) {
+    public PostResponse getAllPosts(Integer pageNumber, Integer pageSize) {
 
         Pageable page = PageRequest.of(pageNumber, pageSize);
 
@@ -98,8 +100,15 @@ public class PostServiceImp implements PostServiceMeths{
         List<PostDTO> postDTOS = allPost
                 .stream()
                 .map((post)-> this.modelMapper.map(post, PostDTO.class))
-                .collect(Collectors.toList());;
-        return postDTOS;
+                .collect(Collectors.toList());
+        PostResponse postResponse = new PostResponse();
+        postResponse.setContent(postDTOS);
+        postResponse.setPageNumber(pagePost.getNumber());
+        postResponse.setPageSize(pagePost.getSize());
+        postResponse.setTotalElement(pagePost.getTotalElements());
+        postResponse.setTotalPages(pagePost.getTotalPages());
+        postResponse.setLastPage(pagePost.isLast());
+        return postResponse;
     }
 
 

@@ -2,6 +2,7 @@ package com.blogapis.bloggingappllication.Service.PostServices;
 
 import com.blogapis.bloggingappllication.Payload.PostDTO;
 import com.blogapis.bloggingappllication.Entity.PostEntity;
+import com.blogapis.bloggingappllication.Payload.PostResponse;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public interface PostServiceMeths {
 
     //GET ALL
 //    List<PostDTO> getAllPosts();
-    List<PostDTO> getAllPosts(Integer pageNumber, Integer PageSize);  /** PAGINATION */
+    PostResponse getAllPosts(Integer pageNumber, Integer PageSize);  /** PAGINATION */
 
     //GET ALL POST BY CATEGORY
     List<PostDTO> getPostsByCategory(Integer categoryId);

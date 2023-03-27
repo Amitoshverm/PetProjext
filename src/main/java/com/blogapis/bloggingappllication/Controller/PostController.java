@@ -2,6 +2,7 @@ package com.blogapis.bloggingappllication.Controller;
 
 import com.blogapis.bloggingappllication.Payload.ApiResponse;
 import com.blogapis.bloggingappllication.Payload.PostDTO;
+import com.blogapis.bloggingappllication.Payload.PostResponse;
 import com.blogapis.bloggingappllication.Service.PostServices.PostServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -50,12 +51,12 @@ public class PostController {
 
     /** PAGINATION */
     @GetMapping("/posts")
-    public ResponseEntity<List<PostDTO>> getAllPosts(
+    public ResponseEntity<PostResponse> getAllPosts(
             @RequestParam(value = "pageNumber", defaultValue = "0", required = false) Integer pageNumber,
             @RequestParam(value = "pageSize", defaultValue = "10", required = false) Integer pageSize
     ) {
-        List<PostDTO> posts = this.postService.getAllPosts(pageNumber, pageSize);
-        return new ResponseEntity<List<PostDTO>>(posts, HttpStatus.OK);
+        PostResponse postResponse = this.postService.getAllPosts(pageNumber, pageSize);
+        return new ResponseEntity<PostResponse>(postResponse, HttpStatus.OK);
     }
 
     // delete Post
