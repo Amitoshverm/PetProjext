@@ -1,7 +1,7 @@
 package com.blogapis.bloggingappllication.Service.CategoryService;
 
 import com.blogapis.bloggingappllication.CustomException.ResourceNotFoundException;
-import com.blogapis.bloggingappllication.DTO.CategoryDTO;
+import com.blogapis.bloggingappllication.Payload.CategoryDTO;
 import com.blogapis.bloggingappllication.Entity.CategoryEntity;
 import com.blogapis.bloggingappllication.Repository.CategoryRepository;
 import org.modelmapper.ModelMapper;

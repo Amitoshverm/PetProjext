@@ -1,6 +1,6 @@
 package com.blogapis.bloggingappllication.Service.CategoryService;
 
-import com.blogapis.bloggingappllication.DTO.CategoryDTO;
+import com.blogapis.bloggingappllication.Payload.CategoryDTO;
 
 import java.util.List;
 

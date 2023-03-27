@@ -1,7 +1,7 @@
 package com.blogapis.bloggingappllication.Service.PostServices;
 
 import com.blogapis.bloggingappllication.CustomException.ResourceNotFoundException;
-import com.blogapis.bloggingappllication.DTO.PostDTO;
+import com.blogapis.bloggingappllication.Payload.PostDTO;
 import com.blogapis.bloggingappllication.Entity.CategoryEntity;
 import com.blogapis.bloggingappllication.Entity.PostEntity;
 import com.blogapis.bloggingappllication.Entity.UserEntity;

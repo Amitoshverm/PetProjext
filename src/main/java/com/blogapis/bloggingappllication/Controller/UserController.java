@@ -1,7 +1,7 @@
 package com.blogapis.bloggingappllication.Controller;
 
-import com.blogapis.bloggingappllication.DTO.ApiResponse;
-import com.blogapis.bloggingappllication.DTO.UserDTO;
+import com.blogapis.bloggingappllication.Payload.ApiResponse;
+import com.blogapis.bloggingappllication.Payload.UserDTO;
 import com.blogapis.bloggingappllication.Service.UserService.UserServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

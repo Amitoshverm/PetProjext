@@ -1,4 +1,4 @@
-package com.blogapis.bloggingappllication.DTO;
+package com.blogapis.bloggingappllication.Payload;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,6 +1,5 @@
 package com.blogapis.bloggingappllication.Entity;
 
-import com.blogapis.bloggingappllication.DTO.UserDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

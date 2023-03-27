@@ -1,11 +1,10 @@
-package com.blogapis.bloggingappllication.DTO;
+package com.blogapis.bloggingappllication.Payload;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Getter

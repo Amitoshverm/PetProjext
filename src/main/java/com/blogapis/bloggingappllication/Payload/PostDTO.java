@@ -1,7 +1,5 @@
-package com.blogapis.bloggingappllication.DTO;
+package com.blogapis.bloggingappllication.Payload;
 
-import com.blogapis.bloggingappllication.Entity.CategoryEntity;
-import com.blogapis.bloggingappllication.Entity.UserEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

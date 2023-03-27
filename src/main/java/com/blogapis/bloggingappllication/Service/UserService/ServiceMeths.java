@@ -1,6 +1,6 @@
 package com.blogapis.bloggingappllication.Service.UserService;
 
-import com.blogapis.bloggingappllication.DTO.UserDTO;
+import com.blogapis.bloggingappllication.Payload.UserDTO;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.blogapis.bloggingappllication.Service.PostServices;
 
-import com.blogapis.bloggingappllication.DTO.PostDTO;
+import com.blogapis.bloggingappllication.Payload.PostDTO;
 import com.blogapis.bloggingappllication.Entity.PostEntity;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.blogapis.bloggingappllication.CustomException;
 
- import com.blogapis.bloggingappllication.DTO.ApiResponse;
+ import com.blogapis.bloggingappllication.Payload.ApiResponse;
  import org.springframework.http.HttpStatus;
  import org.springframework.http.ResponseEntity;
  import org.springframework.validation.FieldError;

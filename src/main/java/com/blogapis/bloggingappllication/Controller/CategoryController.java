@@ -1,8 +1,7 @@
 package com.blogapis.bloggingappllication.Controller;
 
-import com.blogapis.bloggingappllication.DTO.ApiResponse;
-import com.blogapis.bloggingappllication.DTO.CategoryDTO;
-import com.blogapis.bloggingappllication.Entity.CategoryEntity;
+import com.blogapis.bloggingappllication.Payload.ApiResponse;
+import com.blogapis.bloggingappllication.Payload.CategoryDTO;
 import com.blogapis.bloggingappllication.Service.CategoryService.CategoryServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

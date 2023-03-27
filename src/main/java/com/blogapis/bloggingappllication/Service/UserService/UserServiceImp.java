@@ -1,7 +1,7 @@
 package com.blogapis.bloggingappllication.Service.UserService;
 
 import com.blogapis.bloggingappllication.CustomException.ResourceNotFoundException;
-import com.blogapis.bloggingappllication.DTO.UserDTO;
+import com.blogapis.bloggingappllication.Payload.UserDTO;
 import com.blogapis.bloggingappllication.Entity.UserEntity;
 import com.blogapis.bloggingappllication.Repository.UserRepository;
 import org.modelmapper.ModelMapper;

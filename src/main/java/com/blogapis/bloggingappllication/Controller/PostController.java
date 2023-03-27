@@ -1,12 +1,8 @@
 package com.blogapis.bloggingappllication.Controller;
 
-import com.blogapis.bloggingappllication.DTO.ApiResponse;
-import com.blogapis.bloggingappllication.DTO.PostDTO;
-import com.blogapis.bloggingappllication.Entity.CategoryEntity;
-import com.blogapis.bloggingappllication.Entity.PostEntity;
-import com.blogapis.bloggingappllication.Repository.PostRepository;
+import com.blogapis.bloggingappllication.Payload.ApiResponse;
+import com.blogapis.bloggingappllication.Payload.PostDTO;
 import com.blogapis.bloggingappllication.Service.PostServices.PostServiceImp;
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,19 +41,18 @@ public class PostController {
         return new ResponseEntity<List<PostDTO>>(posts, HttpStatus.OK);
     }
 
-    // get all posts
+     //get all posts
 //    @GetMapping("/posts")
 //    public ResponseEntity<List<PostDTO>> getAllPosts() {
 //        List<PostDTO> posts = this.postService.getAllPosts();
 //        return new ResponseEntity<List<PostDTO>>(posts, HttpStatus.OK);
 //    }
 
-
     /** PAGINATION */
     @GetMapping("/posts")
     public ResponseEntity<List<PostDTO>> getAllPosts(
-            @RequestParam(value = "pageNumber", defaultValue = "1", required = false) Integer pageNumber,
-            @RequestParam(value = "pageSize", defaultValue = "5", required = false) Integer pageSize
+            @RequestParam(value = "pageNumber", defaultValue = "0", required = false) Integer pageNumber,
+            @RequestParam(value = "pageSize", defaultValue = "10", required = false) Integer pageSize
     ) {
         List<PostDTO> posts = this.postService.getAllPosts(pageNumber, pageSize);
         return new ResponseEntity<List<PostDTO>>(posts, HttpStatus.OK);
