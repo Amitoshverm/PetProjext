@@ -1,5 +1,6 @@
 package com.blogapis.bloggingappllication.Service.UserService;
 
+import com.blogapis.bloggingappllication.Payload.PostDTO;
 import com.blogapis.bloggingappllication.Payload.UserDTO;
 
 import java.util.List;
@@ -14,4 +15,5 @@ public interface ServiceMeths {
     UserDTO updateUser(UserDTO userDTO, Integer userId);
     void deleteUser(Integer userId);
     UserDTO getById(Integer userId);
+
 }
