@@ -148,7 +148,12 @@ public class PostServiceImp implements PostServiceMeths{
     }
 
     @Override
-    public List<PostEntity> searchPosts(String keyword) {
-        return null;
+    public List<PostDTO> searchPosts(String keyword) {
+        List<PostEntity> postEntities = this.postRepository.findBypostTitleContaining(keyword);
+        List<PostDTO> searchedPosts = postEntities
+                .stream().
+                map((post)->this.modelMapper.map(post, PostDTO.class))
+                .collect(Collectors.toList());
+        return searchedPosts;
     }
 }

@@ -1,6 +1,7 @@
 package com.blogapis.bloggingappllication.Service.UserService;
 
 import com.blogapis.bloggingappllication.CustomException.ResourceNotFoundException;
+import com.blogapis.bloggingappllication.Payload.PostDTO;
 import com.blogapis.bloggingappllication.Payload.UserDTO;
 import com.blogapis.bloggingappllication.Entity.UserEntity;
 import com.blogapis.bloggingappllication.Repository.UserRepository;
@@ -74,7 +75,7 @@ public class UserServiceImp implements ServiceMeths {
 
     }
 
-//    /**UserDTO --> UserEntity*/
+    //    /**UserDTO --> UserEntity*/
     private UserEntity dtoTOUserEntity(UserDTO userDTO) {
         //using modal mapper
         UserEntity user = this.modelMapper.map(userDTO, UserEntity.class);

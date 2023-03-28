@@ -1,5 +1,6 @@
 package com.blogapis.bloggingappllication.Controller;
 
+import com.blogapis.bloggingappllication.AppConfigs.AppConstants;
 import com.blogapis.bloggingappllication.Payload.ApiResponse;
 import com.blogapis.bloggingappllication.Payload.PostDTO;
 import com.blogapis.bloggingappllication.Payload.PostResponse;
@@ -52,10 +53,10 @@ public class PostController {
     /** PAGINATION */
     @GetMapping("/posts")
     public ResponseEntity<PostResponse> getAllPosts(
-            @RequestParam(value = "pageNumber", defaultValue = "0", required = false) Integer pageNumber,
-            @RequestParam(value = "pageSize", defaultValue = "10", required = false) Integer pageSize,
-            @RequestParam(value = "sortBy", defaultValue = "postId", required = false) String sortBy,
-            @RequestParam(value = "sortDir",defaultValue = "asc", required = false) String sortDir
+            @RequestParam(value = "pageNumber", defaultValue = AppConstants.PAGE_NUMBER, required = false) Integer pageNumber,
+            @RequestParam(value = "pageSize", defaultValue = AppConstants.PAGE_SIZE, required = false) Integer pageSize,
+            @RequestParam(value = "sortBy", defaultValue = AppConstants.SORT_BY, required = false) String sortBy,
+            @RequestParam(value = "sortDir",defaultValue = AppConstants.SORT_DIR, required = false) String sortDir
     ) {
         PostResponse postResponse = this.postService.getAllPosts(pageNumber, pageSize, sortBy, sortDir);
         return new ResponseEntity<PostResponse>(postResponse, HttpStatus.OK);
@@ -81,5 +82,12 @@ public class PostController {
         PostDTO postDTO = this.postService.updatePost(post, postId);
 
         return new ResponseEntity<>(postDTO, HttpStatus.OK);
+    }
+
+    // Search Post
+    @GetMapping("/posts/search/{keyword}")
+    public ResponseEntity<List<PostDTO>> searchPostByTitle(@PathVariable("keyword") String keyword) {
+        List<PostDTO> searchedPosts = this.postService.searchPosts(keyword);
+        return  ResponseEntity.ok(searchedPosts);
     }
 }

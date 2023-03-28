@@ -31,6 +31,6 @@ public interface PostServiceMeths {
     List<PostDTO> getPostsByUser(Integer userId);
 
     //SEARCH POSTS
-    List<PostEntity> searchPosts(String keyword);
+    List<PostDTO> searchPosts(String keyword);
 
 }
