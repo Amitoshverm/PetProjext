@@ -93,6 +93,9 @@ public class PostServiceImp implements PostServiceMeths{
     @Override
     public PostResponse getAllPosts(Integer pageNumber, Integer pageSize, String sortBy, String sortDir) {
 
+
+//       Sort sort = sortDir.equalsIgnoreCase("asc")?Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
+        //above is done using ternary operator to avoid if else
         Sort sort = null;
         if (sortDir.equalsIgnoreCase("asc")){
             sort = Sort.by(sortBy).ascending();
