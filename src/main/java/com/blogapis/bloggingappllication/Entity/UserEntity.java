@@ -28,4 +28,6 @@ public class UserEntity {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<PostEntity> posts = new ArrayList<>();
 
+
+
 }

@@ -97,7 +97,7 @@ public class PostServiceImp implements PostServiceMeths{
 //       Sort sort = sortDir.equalsIgnoreCase("asc")?Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
         //above is done using ternary operator to avoid if else
         Sort sort = null;
-        if (sortDir.equalsIgnoreCase("asc")){
+        if (sortDir.equals("asc")){
             sort = Sort.by(sortBy).ascending();
         }
         else {

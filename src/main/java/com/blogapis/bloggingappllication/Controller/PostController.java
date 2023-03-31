@@ -5,11 +5,17 @@ import com.blogapis.bloggingappllication.Payload.ApiResponse;
 import com.blogapis.bloggingappllication.Payload.PostDTO;
 import com.blogapis.bloggingappllication.Payload.PostResponse;
 import com.blogapis.bloggingappllication.Service.PostServices.PostServiceImp;
+import com.blogapis.bloggingappllication.Service.fileService.FileServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.validation.Valid;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +25,12 @@ public class PostController {
 
     @Autowired
     private PostServiceImp postService;
+
+    @Autowired
+    private FileServiceImpl fileService;
+
+    @Value("&{project.image}")
+    private String path;
 
     //create Post
     @PostMapping("/user/{userId}/category/{categoryId}/posts")
@@ -89,5 +101,17 @@ public class PostController {
     public ResponseEntity<List<PostDTO>> searchPostByTitle(@PathVariable("keyword") String keyword) {
         List<PostDTO> searchedPosts = this.postService.searchPosts(keyword);
         return  ResponseEntity.ok(searchedPosts);
+    }
+
+    //Post image upload
+    @PostMapping("/post/image/upload/{postId}")
+     public ResponseEntity<PostDTO> uploadPostImage(@Valid @RequestParam ("image") MultipartFile image, @PathVariable Integer postId) throws IOException {
+
+
+        PostDTO postDTO = this.postService.getPostById(postId);
+        String fileName = this.fileService.uploadImage(path, image);
+        postDTO.setImage(fileName);
+        PostDTO updatedPostdto = this.postService.updatePost(postDTO, postId);
+        return  new ResponseEntity<PostDTO>(updatedPostdto, HttpStatus.OK);
     }
 }
