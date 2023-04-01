@@ -20,13 +20,13 @@ public class UserEntity implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer userId;
+    private Integer userId;
     @Column(name= "user_name", nullable = false)
-    String username;
+    private String username;
     @Column(name = "Email", nullable = false)
-    String email;
-    String password;
-    String about;
+    private String email;
+    private String password;
+    private String about;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<PostEntity> posts = new ArrayList<>();
