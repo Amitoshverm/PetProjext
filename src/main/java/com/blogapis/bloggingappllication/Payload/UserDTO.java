@@ -21,7 +21,6 @@ public class UserDTO {
     private String email;
 
     @NotNull
-    @Pattern(regexp = "^([a-zA-Z0-9]{8})", message = "Password should contain one UpperCase, number and should have length of 8")
     private String password;
 
     @NotNull
