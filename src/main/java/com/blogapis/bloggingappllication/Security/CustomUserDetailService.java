@@ -1,6 +1,5 @@
-package com.blogapis.bloggingappllication;
+package com.blogapis.bloggingappllication.Security;
 
-import com.blogapis.bloggingappllication.CustomException.ForStringResourceNotFound;
 import com.blogapis.bloggingappllication.CustomException.ResourceNotFoundException;
 import com.blogapis.bloggingappllication.Entity.UserEntity;
 import com.blogapis.bloggingappllication.Repository.UserRepository;
@@ -10,6 +9,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+
+//This class will give user related data as it implements from USER DETAILS SERVICE
 @Service
 public class CustomUserDetailService implements UserDetailsService {
 
@@ -20,7 +21,7 @@ public class CustomUserDetailService implements UserDetailsService {
 
         //Load user from database by username
         UserEntity user =  this.userRepository.findByEmail(username)
-                .orElseThrow(()-> new ResourceNotFoundException("user", "email "+ username, 0));
+                .orElseThrow(()-> new ResourceNotFoundException("user", "email : "+username , 0));
 
         return user;
     }
