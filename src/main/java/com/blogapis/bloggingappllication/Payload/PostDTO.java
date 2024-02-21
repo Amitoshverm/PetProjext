@@ -1,6 +1,5 @@
 package com.blogapis.bloggingappllication.Payload;
 
-import com.blogapis.bloggingappllication.Entity.CommentEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

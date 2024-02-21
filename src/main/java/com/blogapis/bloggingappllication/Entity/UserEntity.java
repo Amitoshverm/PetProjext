@@ -41,9 +41,12 @@ public class UserEntity implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // extracting above roles for to gran authority
 
-        List<SimpleGrantedAuthority> collectedAuthorities =  this.roles.stream().map((role)-> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
+
+        // extracting above roles for to granted authority
+        List<SimpleGrantedAuthority> collectedAuthorities = this.roles.stream()
+                        .map((role)-> new SimpleGrantedAuthority(role.getName()))
+                        .collect(Collectors.toList());
         return collectedAuthorities;
     }
 

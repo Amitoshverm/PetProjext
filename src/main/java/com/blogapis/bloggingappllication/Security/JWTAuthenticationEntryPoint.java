@@ -9,8 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@Component
+@Component //Component - So that we can autowire later
 public class JWTAuthenticationEntryPoint implements AuthenticationEntryPoint {
+
+
+    //Whenever an unauthorised user tries to access we will use this
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Access denied !");

@@ -19,13 +19,15 @@ public class JWTTokenHelper {
     private String secret = "JwtTokenKey";
 
 
-    // retrieve username from jwt token
+
     public String getUsernameFromToken(String token){
+        // retrieve username from jwt token
         return getClaimFromToken(token, Claims::getSubject);
     }
 
-    // retrieve Expiration date from jwt token
+
     public Date getExpirationDate(String token) {
+        // retrieve Expiration date from jwt token
         return getClaimFromToken(token, Claims::getExpiration);
     }
 
@@ -34,19 +36,22 @@ public class JWTTokenHelper {
         return claimsResolver.apply(claims);
     }
 
-    // for retrieving any information from jwt token we will need the secret key
+
     private Claims getAllClaimsFromToken(String token) {
+        // for retrieving any information from jwt token we will need the secret key
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
     }
 
-    // check if token is expired
+
     public Boolean isTokenExpired(String token) {
+        // check if token is expired
         final Date expiration = getExpirationDate(token);
         return expiration.before(new Date());
     }
 
-    // generate token
+
     public String generateToken(UserDetails userDetails) {
+        // generate token
         Map<String, Object> claims = new HashMap<>();
         return doGenerateToken(claims, userDetails.getUsername());
     }
